@@ -8,17 +8,14 @@ InkRun is a 2d platformer where the player must guide their character from a sta
 
 InkRun players will be able to:
 
-[ ] - Start, pause, reset, and select any level they have unlocked in the current playthrough
-
-[ ] - Move their character side to side and perform a short jump
-
-[ ] - Draw terrain with the mouse so long as their ink gauge is not depleted
+- [ ] Start, pause, reset, and select any level they have unlocked in the current playthrough
+- [ ] Move their character side to side and perform a short jump
+- [ ] Draw terrain with the mouse so long as their ink gauge is not depleted
 
 Potential bonus features include:
 
-[ ] - Audio controls that allow the player to mute music and sound effects and choose a different background track.
-
-[ ] - Additional customization options such as character sprite selection and alternate brush shape, thickness, and color.
+- [ ] Audio controls that allow the player to mute music and sound effects and choose a different background track.
+- [ ] Additional customization options such as character sprite selection and alternate brush shape, thickness, and color.
 
 ## Wireframes
 
