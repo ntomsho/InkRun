@@ -26,7 +26,7 @@ The app will consist of a single screen with game board, game controls, and nav 
 
 Game controls in the top left corner of the game board let the player pause the game, restart the level, or go back to the level select screen. The Ink Gauge is located in the bottom right hand corner of the game board.
 
-<img src="/Users/Nick/Desktop/inkrun_wireframe.png">
+<img src="./assets/images/inkrun_wireframe.png">
 
 ## Architecture and Technologies
 
