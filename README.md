@@ -19,7 +19,7 @@ Potential bonus features include:
 
 ## Wireframes
 
-The app will consist of a single screen with game board, game controls, and nav links to the GitHub repository as well as my LinkedIn, and other relevant links. Keyboard controls (WASD for movement, Space to jump) are located on the left hand side. Mouse controls (left click to draw). 
+The app will consist of a single screen with game board, game controls, and nav links to the GitHub repository as well as my LinkedIn, and other relevant links. Keyboard controls (left and right arrows for movement, up arrow to jump) are located on the left hand side. Mouse controls (left click to draw). 
 
 Game controls in the top left corner of the game board let the player pause the game, restart the level, or go back to the level select screen. The Ink Gauge is located in the bottom right hand corner of the game board.
 
