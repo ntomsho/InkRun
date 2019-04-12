@@ -17,10 +17,19 @@ class Player {
         this.blockedTop = false;
         this.jumping = false;
         this.jumpCounter = 0;
+        this.dead = false;
         this.draw = this.draw.bind(this);
     }
 
     update(leftPressed, rightPressed, upPressed) {
+        if (this.y > 600) {
+            this.dead = true;
+        }
+        
+        if (this.dead) {
+            return false
+        }
+        
         if (leftPressed === true && this.blockedLeft === false) {
             this.x -= this.speed;
         }
@@ -116,7 +125,7 @@ class Player {
     draw() {
         this.ctx.beginPath();
         this.ctx.rect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
-        this.ctx.fillStyle = this.color;
+        this.ctx.fillStyle = this.dead ? "gray" : this.color;
         this.ctx.fill();
         this.ctx.closePath();
     }

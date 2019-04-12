@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("mousemove", mouseMoveHandler);
     document.body.addEventListener("mousedown", mouseDownHandler);
     document.body.addEventListener("mouseup", mouseUpHandler);
-
-    const player = new Player(96, canvas.height-192, ctx);
-    const game = new Game(canvas, ctx, player, Levels);
-    const goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y,ctx);
+    
+    var player = new Player(96, canvas.height - 192, ctx);
+    var game = new Game(canvas, ctx, player, Levels);
+    var goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y, ctx);
     
     let currentLevelTerrain = [];
     game.currentLevel.terrain.forEach(terrain => {
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (player.x < goal.x + 32 && player.x > goal.x &&
             player.y < goal.y + 32 && player.y > goal.y) {
             game.nextLevel();
+            startLevel();
         }
         currentLevelTerrain.forEach(terrain => {
             terrain.draw();
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.update(leftPressed, rightPressed, upPressed);
         player.draw();
+        game.drawLevelMarker();
         requestAnimationFrame(frameHandler);
     }
 
@@ -116,10 +118,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function reset() {
+        player.dead = false;
         player.x = 96
-        player.y = canvas.height - 192
+        player.y = canvas.height - 192;
         currentLevelDrawings = [];
         game.inkGauge = 100;
+    }
+
+    function startLevel() {
+        player.x = 96;
+        player.y = canvas.height - 192;
+        currentLevelTerrain = [];
+        currentLevelDrawings = [];
+        game.inkGauge = 100;
+        game.currentLevel.terrain.forEach(terrain => {
+            currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
+        });
     }
 
     frameHandler();

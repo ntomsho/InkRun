@@ -12,6 +12,7 @@ class Game {
 
     nextLevel() {
         this.currentLevelIdx += 1;
+        this.currentLevel = this.levels[this.currentLevelIdx];
     }
 
     drawInkGauge() {
@@ -20,6 +21,12 @@ class Game {
         this.ctx.fillStyle = "black";
         this.ctx.fill();
         this.ctx.closePath();
+    }
+
+    drawLevelMarker() {
+        this.ctx.font = "30px Zapfino";
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText(`Level ${this.currentLevelIdx}`, 96, 96);
     }
 
 };
