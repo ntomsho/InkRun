@@ -10,7 +10,7 @@ class Drawing {
     }
 
     hazardCollisionCheck(drawingHazards) {
-        const drawingTop = this.y = this.height / 2;
+        const drawingTop = this.y - this.height / 2;
         const drawingBottom = this.y + this.height / 2;
         const drawingLeft = this.x - this.width / 2;
         const drawingRight = this.x + this.width / 2;
@@ -23,7 +23,7 @@ class Drawing {
 
             if (drawingRight >= hazardLeft && drawingLeft <= hazardRight && drawingTop <= hazardBottom && drawingBottom >= hazardTop) {
                 if (hazard.type === 'eraser') {
-                    this.delete();
+                    this.y = 800;
                 }
             }
         })

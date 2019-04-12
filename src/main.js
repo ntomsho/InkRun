@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         game.drawInkGauge();
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
-            drawing.hazardCollisionCheck(currentLevelHazards)
+            drawing.hazardCollisionCheck(currentLevelHazards);
         })
         goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
