@@ -35,12 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function frameHandler() {
         ctx.clearRect(0,0, canvas.clientWidth, canvas.height);
+        if (player.x < goal.x + 32 && player.x > goal.x &&
+            player.y < goal.y + 32 && player.y > goal.y) {
+            game.nextLevel();
+        }
         currentLevelTerrain.forEach(terrain => {
             terrain.draw();
         });
         if (mousePressed && mouseOffPlayer()) {
-            currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx));
+            if (game.inkGauge > 0) {
+                currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx))
+                game.inkGauge -= 1;
+            } else {
+                game.inkGauge = 0;
+            }
         }
+        game.drawInkGauge();
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
         })
@@ -109,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.x = 96
         player.y = canvas.height - 192
         currentLevelDrawings = [];
+        game.inkGauge = 100;
     }
 
     frameHandler();

@@ -6,11 +6,20 @@ class Game {
         this.inkGauge = 100;
         this.gameOver = false;
         this.levels = levels;
-        this.currentLevel = this.levels[0];
+        this.currentLevelIdx = 0;
+        this.currentLevel = this.levels[this.currentLevelIdx];
     };
 
     nextLevel() {
-        this.currentLevel += 1;
+        this.currentLevelIdx += 1;
+    }
+
+    drawInkGauge() {
+        this.ctx.beginPath();
+        this.ctx.rect(772, 568, 32, -(this.inkGauge));
+        this.ctx.fillStyle = "black";
+        this.ctx.fill();
+        this.ctx.closePath();
     }
 
 };
