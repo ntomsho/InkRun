@@ -10,7 +10,7 @@ class Player {
         this.vspeed = 0;
         this.color = "blue";
         this.ctx = ctx;
-        this.onGround = true;
+        this.onGround = false;
         this.jumping = false;
         this.jumpCounter = 0;
         this.blockedLeft = false;
@@ -60,9 +60,9 @@ class Player {
         if (playerRight >= terrainLeft && playerLeft <= terrainRight && playerTop <= terrainBottom && playerBottom >= terrainTop) {
                 this.collisionHandler(terrain);
             } else {
-                this.onGround = false;
-                this.blockedLeft = false;
-                this.blockedRight = false;
+                // this.onGround = false;
+                // this.blockedLeft = false;
+                // this.blockedRight = false;
             }
     }
 

@@ -1,9 +1,11 @@
 class Game {
-    constructor(canvas, context, player) {
+    constructor(canvas, ctx, player, levels) {
         this.canvas = canvas;
-        this.context = context;
+        this.ctx = ctx;
         this.player = player;
         this.gameOver = false;
+        this.levels = levels;
+        this.currentLevel = this.levels[0];
     };
 
 };

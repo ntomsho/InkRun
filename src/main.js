@@ -1,6 +1,7 @@
 import Player from './player.js';
 import Game from './game.js';
 import Terrain from './terrain.js';
+import Levels from './levels.js';
 
 var rightPressed = false;
 var leftPressed = false;
@@ -14,18 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("keyup", keyUpHandler);
 
     const player = new Player(96, canvas.height-192, ctx);
-    const platform = new Terrain(128, canvas.height - 32, 32, 128, ctx);
-    const wall = new Terrain(236, canvas.height - 64, 96, 32, ctx);
-    const game = new Game(canvas, ctx, player);
+    const game = new Game(canvas, ctx, player, Levels);
+    
+    let currentLevelTerrain = [];
+    game.currentLevel.terrain.forEach(terrain => {
+        currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
+    });
 
     function frameHandler() {
         ctx.clearRect(0,0, canvas.clientWidth, canvas.height);
-        player.collisionCheck(platform);
-        player.collisionCheck(wall);
+            currentLevelTerrain.forEach(terrain => {
+                terrain.draw();
+                player.collisionCheck(terrain);
+            });
         player.update(leftPressed, rightPressed, upPressed);
         player.draw();
-        platform.draw();
-        wall.draw();
         requestAnimationFrame(frameHandler);
     }
 
