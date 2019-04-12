@@ -46,15 +46,17 @@ class Player {
         this.y += this.vspeed;
     }
 
-    collisionCheck(currentLevelTerrain) {
+    collisionCheck(currentLevelTerrain, currentLevelDrawings) {
         const playerTop = this.y - this.height / 2;
         const playerBottom = this.y + this.height / 2;
         const playerLeft = this.x - this.width / 2;
         const playerRight = this.x + this.width / 2;
         
+        const totalTerrain = currentLevelTerrain.concat(currentLevelDrawings);
+
         let colliding = false;
 
-        currentLevelTerrain.forEach(terrain => {
+        totalTerrain.forEach(terrain => {
             const terrainTop = terrain.y - terrain.height / 2;
             const terrainBottom = terrain.y + terrain.height / 2;
             const terrainLeft = terrain.x - terrain.width / 2;

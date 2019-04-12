@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
         })
-        player.collisionCheck(currentLevelTerrain);
+        player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.update(leftPressed, rightPressed, upPressed);
         player.draw();
         requestAnimationFrame(frameHandler);
