@@ -9,7 +9,7 @@ var levels = [
                 width: 128
             },
             {
-                x: 236,
+                x: 204,
                 y: 536,
                 height: 64,
                 width: 32

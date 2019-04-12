@@ -46,24 +46,32 @@ class Player {
         this.y += this.vspeed;
     }
 
-    collisionCheck(terrain) {
-        const playerLeft = this.x - this.width / 2;
-        const playerRight = this.x + this.width / 2;
-        const terrainLeft = terrain.x - terrain.width / 2;
-        const terrainRight = terrain.x + terrain.width / 2;
-
+    collisionCheck(currentLevelTerrain) {
         const playerTop = this.y - this.height / 2;
         const playerBottom = this.y + this.height / 2;
-        const terrainTop = terrain.y - terrain.height / 2;
-        const terrainBottom = terrain.y + terrain.height / 2;
+        const playerLeft = this.x - this.width / 2;
+        const playerRight = this.x + this.width / 2;
         
-        if (playerRight >= terrainLeft && playerLeft <= terrainRight && playerTop <= terrainBottom && playerBottom >= terrainTop) {
-                this.collisionHandler(terrain);
-            } else {
-                // this.onGround = false;
-                // this.blockedLeft = false;
-                // this.blockedRight = false;
-            }
+        let colliding = false;
+
+        currentLevelTerrain.forEach(terrain => {
+            const terrainTop = terrain.y - terrain.height / 2;
+            const terrainBottom = terrain.y + terrain.height / 2;
+            const terrainLeft = terrain.x - terrain.width / 2;
+            const terrainRight = terrain.x + terrain.width / 2;
+            
+            if (playerRight >= terrainLeft && playerLeft <= terrainRight && playerTop <= terrainBottom && playerBottom >= terrainTop) {
+                    colliding = true;
+                    this.collisionHandler(terrain);
+                }
+            })
+
+        if (colliding === false) {
+            this.onGround = false;
+            this.blockedLeft = false;
+            this.blockedRight = false;
+        }
+
     }
 
     collisionHandler(terrain) {
@@ -81,16 +89,16 @@ class Player {
             this.y = (terrain.y - (this.height / 2) - (terrain.height / 2));
             this.onGround = true;
         } else {
-            this.onGround = false;
+            // this.onGround = false;
         }
 
-        if (this.x < terrainLeft && playerTop <= terrainBottom && playerBottom >= terrainTop) {
+        if (this.x < terrainLeft && this.y <= terrainBottom && this.y >= terrainTop) {
             this.blockedRight = true;
         } else {
             this.blockedRight = false;
         }
 
-        if (this.x > terrainRight && playerTop <= terrainBottom && playerBottom >= terrainTop) {
+        if (this.x > terrainRight && this.y <= terrainBottom && this.y >= terrainTop) {
             this.blockedLeft = true;
         } else {
             this.blockedLeft = false;
