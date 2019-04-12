@@ -3,6 +3,7 @@ import Game from './game.js';
 import Terrain from './terrain.js';
 import Drawing from './drawing.js';
 import Levels from './levels.js';
+import Goal from './goal.js';
 
 var rightPressed = false;
 var leftPressed = false;
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const player = new Player(96, canvas.height-192, ctx);
     const game = new Game(canvas, ctx, player, Levels);
+    const goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y,ctx);
     
     let currentLevelTerrain = [];
     game.currentLevel.terrain.forEach(terrain => {
@@ -36,12 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelTerrain.forEach(terrain => {
             terrain.draw();
         });
-        if (mousePressed) {
+        if (mousePressed && mouseOffPlayer()) {
             currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx));
         }
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
         })
+        goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.update(leftPressed, rightPressed, upPressed);
         player.draw();
@@ -70,6 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (e.key == "w" || e.key == "ArrowUp") {
             upPressed = false;
         }
+        else if (e.key == "r") {
+            reset();
+        }
     }
 
     function mouseMoveHandler(e) {
@@ -88,6 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mouseUpHandler() {
         mousePressed = false;
+    }
+
+    function mouseOffPlayer() {
+        if ((mouseX < player.x + 32 && mouseX > player.x - 32) &&
+        (mouseY < player.y + 32 && mouseY > player.y - 32)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function reset() {
+        player.x = 96
+        player.y = canvas.height - 192
+        currentLevelDrawings = [];
     }
 
     frameHandler();

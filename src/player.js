@@ -5,16 +5,18 @@ class Player {
         this.height = 32;
         this.width = 32;
         this.speed = 3;
-        this.gravity = 1;
+        this.gravity = 5;
         this.jumpSpeed = -6;
         this.vspeed = 0;
         this.color = "blue";
         this.ctx = ctx;
+        this.collisionObject = {};
         this.onGround = false;
-        this.jumping = false;
-        this.jumpCounter = 0;
         this.blockedLeft = false;
         this.blockedRight = false;
+        this.blockedTop = false;
+        this.jumping = false;
+        this.jumpCounter = 0;
         this.draw = this.draw.bind(this);
     }
 
@@ -25,20 +27,23 @@ class Player {
         if (rightPressed === true && this.blockedRight === false) {
             this.x += this.speed;
         }
-        if (upPressed === true && this.onGround === true) {
+        if (upPressed === true && this.onGround !== false) {
             this.onGround = false;
             this.jumping = true;  
         }
         
         if (this.onGround === false && this.jumping === false) {
             this.vspeed = this.gravity;
-        } else if (this.onGround === true) {
+        } else if (this.onGround !== false) {
             this.vspeed = 0;
             this.jumpCounter = 0;
+            if (this.blockedRight === false && this.blockedLeft === false) {
+                this.y = this.collisionObject.groundCol;
+            }
         } else if (this.jumping === true) {
             this.vspeed = this.jumpSpeed;
             this.jumpCounter += 1;
-            if (this.jumpCounter >= 10) {
+            if (this.jumpCounter >= 10 || this.blockedTop === true) {
                 this.jumping = false;
             }
         }
@@ -54,7 +59,7 @@ class Player {
         
         const totalTerrain = currentLevelTerrain.concat(currentLevelDrawings);
 
-        let colliding = false;
+        this.collisionObject = {};
 
         totalTerrain.forEach(terrain => {
             const terrainTop = terrain.y - terrain.height / 2;
@@ -63,17 +68,14 @@ class Player {
             const terrainRight = terrain.x + terrain.width / 2;
             
             if (playerRight >= terrainLeft && playerLeft <= terrainRight && playerTop <= terrainBottom && playerBottom >= terrainTop) {
-                    colliding = true;
                     this.collisionHandler(terrain);
                 }
             })
 
-        if (colliding === false) {
-            this.onGround = false;
-            this.blockedLeft = false;
-            this.blockedRight = false;
-        }
-
+        this.collisionObject.groundCol ? this.onGround = true : this.onGround = false;
+        this.collisionObject.topCol ? this.blockedTop = true : this.blockedTop = false;
+        this.collisionObject.leftCol ? this.blockedLeft = true : this.blockedLeft = false;
+        this.collisionObject.rightCol ? this.blockedRight = true : this.blockedRight = false;
     }
 
     collisionHandler(terrain) {
@@ -87,24 +89,28 @@ class Player {
         const terrainTop = terrain.y - terrain.height / 2;
         const terrainBottom = terrain.y + terrain.height / 2;
 
-        if (this.y < terrainTop && this.jumping === false) {
-            this.y = (terrain.y - (this.height / 2) - (terrain.height / 2));
-            this.onGround = true;
-        } else {
-            // this.onGround = false;
-        }
+        let thisCollision = {};
+
+        if (this.y < terrainTop - this.gravity 
+            && this.jumping === false
+            && playerRight > terrainLeft
+            && playerLeft < terrainRight) {
+            thisCollision.groundCol = terrainTop - this.height / 2;
+        } 
+
+        if (playerTop > terrainBottom + this.jumpSpeed) {
+            thisCollision.topCol = true;
+        } 
 
         if (this.x < terrainLeft && this.y <= terrainBottom && this.y >= terrainTop) {
-            this.blockedRight = true;
-        } else {
-            this.blockedRight = false;
-        }
+            thisCollision.rightCol = true;
+        } 
 
         if (this.x > terrainRight && this.y <= terrainBottom && this.y >= terrainTop) {
-            this.blockedLeft = true;
-        } else {
-            this.blockedLeft = false;
-        }
+            thisCollision.leftCol = true;
+        } 
+
+        Object.assign(this.collisionObject, thisCollision);
     }
 
     draw() {
