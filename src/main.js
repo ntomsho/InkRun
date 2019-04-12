@@ -4,6 +4,7 @@ import Terrain from './terrain.js';
 import Drawing from './drawing.js';
 import Levels from './levels.js';
 import Goal from './goal.js';
+import Hazard from './hazard.js';
 
 var rightPressed = false;
 var leftPressed = false;
@@ -31,6 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
     });
 
+    let currentLevelHazards = [];
+    game.currentLevel.hazards.forEach(hazard => {
+        currentLevelHazards.push(new Hazard(hazard.x, hazard.y, hazard.type, ctx));
+    });
+
     let currentLevelDrawings = [];
 
     function frameHandler() {
@@ -43,6 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelTerrain.forEach(terrain => {
             terrain.draw();
         });
+        currentLevelHazards.forEach(hazard => {
+            hazard.update();
+            hazard.draw();
+        })
         if (mousePressed && mouseOffPlayer()) {
             if (game.inkGauge > 0) {
                 currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx))
@@ -54,9 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
         game.drawInkGauge();
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
+            drawing.hazardCollisionCheck(currentLevelHazards)
         })
         goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
+        player.hazardCollisionCheck(currentLevelHazards);
         player.update(leftPressed, rightPressed, upPressed);
         player.draw();
         game.drawLevelMarker();
@@ -134,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
         game.currentLevel.terrain.forEach(terrain => {
             currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
         });
+        game.currentLevel.hazards.forEach(hazard => {
+            currentLevelHazards.push(new Hazard(hazard.x, hazard.y, hazard.height, hazard.width, ctx));
+        })
     }
 
     frameHandler();

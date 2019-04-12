@@ -26,7 +26,7 @@ class Game {
     drawLevelMarker() {
         this.ctx.font = "30px Zapfino";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText(`Level ${this.currentLevelIdx}`, 96, 96);
+        this.ctx.fillText(`Level ${this.currentLevelIdx + 1}`, 96, 96);
     }
 
 };

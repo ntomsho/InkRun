@@ -87,6 +87,24 @@ class Player {
         this.collisionObject.rightCol ? this.blockedRight = true : this.blockedRight = false;
     }
 
+    hazardCollisionCheck(currentLevelHazards) {
+        const playerTop = this.y - this.height / 2;
+        const playerBottom = this.y + this.height / 2;
+        const playerLeft = this.x - this.width / 2;
+        const playerRight = this.x + this.width / 2;
+
+        currentLevelHazards.forEach(hazard => {
+            const hazardTop = hazard.y - hazard.height / 2 + 3;
+            const hazardBottom = hazard.y + hazard.height / 2 - 3;
+            const hazardLeft = hazard.x - hazard.width / 2 + 3;
+            const hazardRight = hazard.x + hazard.width / 2 - 3;
+
+            if (playerRight >= hazardLeft && playerLeft <= hazardRight && playerTop <= hazardBottom && playerBottom >= hazardTop) {
+                this.dead = true;
+            }
+        })
+    }
+
     collisionHandler(terrain) {
         const playerLeft = this.x - this.width / 2;
         const playerRight = this.x + this.width / 2;
