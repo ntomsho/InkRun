@@ -72,6 +72,11 @@ var levels = [
                 x: 450,
                 y: 364,
                 type: 'eraser'
+            },
+            {
+                x: 384,
+                y: 96,
+                type: 'whiteout'
             }
         ],
         

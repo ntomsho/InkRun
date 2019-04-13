@@ -22,7 +22,7 @@ class Drawing {
             const hazardRight = hazard.x + hazard.width / 2;
 
             if (drawingRight >= hazardLeft && drawingLeft <= hazardRight && drawingTop <= hazardBottom && drawingBottom >= hazardTop) {
-                if (hazard.type === 'eraser') {
+                if (hazard.type === 'eraser' || hazard.type === 'drop') {
                     this.y = 800;
                 }
             }

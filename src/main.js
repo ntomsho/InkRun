@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("mousedown", mouseDownHandler);
     document.body.addEventListener("mouseup", mouseUpHandler);
     
-    var player = new Player(96, canvas.height - 192, ctx);
+    var player = new Player(96, canvas.height - 160, ctx);
     var game = new Game(canvas, ctx, player, Levels);
     var goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y, ctx);
     
@@ -35,6 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentLevelHazards = [];
     game.currentLevel.hazards.forEach(hazard => {
         currentLevelHazards.push(new Hazard(hazard.x, hazard.y, hazard.type, ctx));
+        if (hazard.type === 'whiteout') {
+            const whiteout = currentLevelHazards.slice(-1)[0];
+            for (let i = 0; i < whiteout.numDrops; i++) {
+                const drop = new Hazard(hazard.x, 800, 'drop', ctx);
+                currentLevelHazards.push(drop);
+                whiteout.drops.push(drop);
+            }
+        }
     });
 
     let currentLevelDrawings = [];
@@ -103,21 +111,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function mouseMoveHandler(e) {
+        var rect = canvas.getBoundingClientRect();
         if (e.clientX > 0 && e.clientX < 900) {
-            mouseX = e.clientX;
+            mouseX = e.clientX - rect.left;
         }
         
         if (e.clientY > 0 && e.clientY < 600) {
-            mouseY = e.clientY;
+            mouseY = e.clientY - rect.top;
         }
     }
 
-    function mouseDownHandler() {
-        mousePressed = true;
+    function mouseDownHandler(e) {
+        if (e.which === 1) {
+            mousePressed = true;
+        }
     }
 
-    function mouseUpHandler() {
-        mousePressed = false;
+    function mouseUpHandler(e) {
+        if (e.which === 1) {
+            mousePressed = false;
+        }
     }
 
     function mouseOffPlayer() {
@@ -139,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startLevel() {
         player.x = 96;
-        player.y = canvas.height - 192;
+        player.y = canvas.height - 160;
         currentLevelTerrain = [];
         currentLevelDrawings = [];
         game.inkGauge = 100;

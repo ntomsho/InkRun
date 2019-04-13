@@ -13,6 +13,16 @@ class Hazard {
             this.width = 64;
             this.height = 32;
             this.speed = 4;
+        } else if (this.type === 'whiteout') {
+            this.width = 32;
+            this.height = 96;
+            this.dropCounter = 0;
+            this.numDrops = 3;
+            this.currentDrop = 0;
+            this.drops = []
+        } else if (this.type === 'drop') {
+            this.width = 32;
+            this.height = 32;
         }
         this.ctx = ctx;
         this.draw = this.draw.bind(this);
@@ -27,12 +37,34 @@ class Hazard {
                 } else if (this.x < -16) {
                     this.speed = 4;
                 }
-            break;
+                break;
+            case 'whiteout':
+                this.dropCounter += 1
+                if (this.dropCounter >= 100) {
+                    this.dropCounter = 0;
+                    this.drops[this.currentDrop].y = this.y + 48;
+                    this.currentDrop === 2 ? this.currentDrop = 0 : this.currentDrop += 1;
+                }
+                break;
+            case 'drop':
+                this.y += 6;
+                break;
         }
     }
 
     draw() {
         switch (this.type) {
+            case 'whiteout':
+                this.ctx.beginPath();
+                this.ctx.rect(this.x - 16, this.y - 48, this.width, this.height);
+                this.ctx.fillStyle = "gray";
+                this.ctx.stroke();
+                break;
+            case 'drop':
+                this.ctx.beginPath();
+                this.ctx.arc(this.x, this.y, 8, 0, Math.PI * 2);
+                this.ctx.stroke();
+                break;
             case 'eraser':
                 this.ctx.beginPath();
                 this.ctx.rect(this.x - 32, this.y - 16, this.width, this.height);
