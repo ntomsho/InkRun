@@ -12,6 +12,8 @@ var upPressed = false;
 var mousePressed = false;
 var mouseX = 0;
 var mouseY = 0;
+    var prevMouseX = 0;
+    var prevMouseY = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("inkRunCanvas");
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         if (mousePressed && mouseOffPlayer()) {
             if (game.inkGauge > 0) {
-                currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx))
+                currentLevelDrawings.push(new Drawing(mouseX, mouseY, prevMouseX, prevMouseY, ctx))
                 game.inkGauge -= 1;
             } else {
                 game.inkGauge = 0;
@@ -113,10 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function mouseMoveHandler(e) {
         var rect = canvas.getBoundingClientRect();
         if (e.clientX > 0 && e.clientX < 900) {
+                prevMouseX = mouseX;
             mouseX = e.clientX - rect.left;
         }
         
         if (e.clientY > 0 && e.clientY < 600) {
+                prevMouseY = mouseY;
             mouseY = e.clientY - rect.top;
         }
     }

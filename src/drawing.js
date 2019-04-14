@@ -1,7 +1,9 @@
 class Drawing {
-    constructor(x, y, ctx) {
+    constructor(x, y, prevX, prevY, ctx) {
         this.x = x;
         this.y = y;
+            this.prevX = prevX;
+            this.prevY = prevY;
         this.height = 32;
         this.width = 32;
         this.color = "black";
@@ -31,9 +33,13 @@ class Drawing {
 
     draw() {
         this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, 16, 0, Math.PI * 2);
-        this.ctx.fillStyle = this.color;
-        this.ctx.fill();
+        // this.ctx.arc(this.x, this.y, 16, 0, Math.PI * 2);
+        // this.ctx.fillStyle = this.color;
+        // this.ctx.fill();
+            this.ctx.moveTo(this.prevX, this.prevY);
+            this.ctx.lineTo(this.x, this.y);
+            // this.ctx.lineWidth = 16;
+            this.ctx.stroke();
         this.ctx.closePath();
     }
 }
