@@ -4,8 +4,8 @@ class Drawing {
         this.y = y;
             this.prevX = prevX;
             this.prevY = prevY;
-        this.height = 32;
-        this.width = 32;
+        this.height = 16;
+        this.width = 16;
         this.color = "black";
         this.ctx = ctx;
         this.draw = this.draw.bind(this);
@@ -26,6 +26,7 @@ class Drawing {
             if (drawingRight >= hazardLeft && drawingLeft <= hazardRight && drawingTop <= hazardBottom && drawingBottom >= hazardTop) {
                 if (hazard.type === 'eraser' || hazard.type === 'drop') {
                     this.y = 800;
+                    this.prevY = 800;
                 }
             }
         })
@@ -33,13 +34,15 @@ class Drawing {
 
     draw() {
         this.ctx.beginPath();
-        // this.ctx.arc(this.x, this.y, 16, 0, Math.PI * 2);
-        // this.ctx.fillStyle = this.color;
-        // this.ctx.fill();
-            this.ctx.moveTo(this.prevX, this.prevY);
-            this.ctx.lineTo(this.x, this.y);
-            // this.ctx.lineWidth = 16;
-            this.ctx.stroke();
+
+        //Change this to take prevX/Y and make
+        //a for loop creating circles with X and Y getting
+        //closer to this.x/y by one pixel each until they're
+        //both equal.
+
+        this.ctx.arc(this.x, this.y, 8, 0, Math.PI * 2);
+        this.ctx.fillStyle = this.color;
+        this.ctx.fill();
         this.ctx.closePath();
     }
 }

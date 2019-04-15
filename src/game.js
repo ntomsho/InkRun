@@ -3,7 +3,7 @@ class Game {
         this.canvas = canvas;
         this.ctx = ctx;
         this.player = player;
-        this.inkGauge = 100;
+        this.inkGauge = 150;
         this.gameOver = false;
         this.levels = levels;
         this.currentLevelIdx = 0;

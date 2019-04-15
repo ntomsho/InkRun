@@ -1,0 +1,41 @@
+body {
+    background: url('../assets/images/desk-bg2.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    /* background-size: 1450px; */
+}
+
+.abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.horizontal-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.canvas-container {
+    height: 540px;
+    width: 810px;
+    display: block;
+    position: relative;
+    /* margin: auto; */
+}
+
+.title-header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 10px;
+}
+
+h1 {
+    font-family: zapfino;
+    font-size: 30px;
+    line-height: 30px;
+    margin: 0;
+}

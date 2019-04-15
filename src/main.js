@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (e.key == "a" || e.key == "ArrowLeft") {
             leftPressed = true;
         }
-        else if (e.key == "w" || e.key == "ArrowUp" || e.key == "Space") {
+        else if (e.key == "w" || e.key == "ArrowUp") {
             upPressed = true;
         }
     }
@@ -114,15 +114,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mouseMoveHandler(e) {
         var rect = canvas.getBoundingClientRect();
-        if (e.clientX > 0 && e.clientX < 900) {
+        // if (e.clientX > 0 && e.clientX < 900) {
                 prevMouseX = mouseX;
             mouseX = e.clientX - rect.left;
-        }
+        // }
         
-        if (e.clientY > 0 && e.clientY < 600) {
+        // if (e.clientY > 0 && e.clientY < 600) {
                 prevMouseY = mouseY;
             mouseY = e.clientY - rect.top;
-        }
+        // }
     }
 
     function mouseDownHandler(e) {
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.x = 96
         player.y = canvas.height - 192;
         currentLevelDrawings = [];
-        game.inkGauge = 100;
+        game.inkGauge = 150;
     }
 
     function startLevel() {
