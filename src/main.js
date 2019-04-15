@@ -25,35 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("mousedown", mouseDownHandler);
     document.body.addEventListener("mouseup", mouseUpHandler);
     
-    var player = new Player(96, canvas.height - 128, ctx);
+    var player = new Player(96, canvas.height - 96, ctx);
     var game = new Game(canvas, ctx, player, Levels);
     var goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y, ctx);
 
     let currentLevelTerrain = [];
-    game.currentLevel.terrain.forEach(terrain => {
-        currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
-    });
-
     let currentLevelHazards = [];
-    game.currentLevel.hazards.forEach(hazard => {
-        currentLevelHazards.push(new Hazard(hazard.x, hazard.y, hazard.type, ctx));
-        if (hazard.type === 'whiteout') {
-            const whiteout = currentLevelHazards.slice(-1)[0];
-            for (let i = 0; i < whiteout.numDrops; i++) {
-                const drop = new Hazard(hazard.x, 800, 'drop', ctx);
-                currentLevelHazards.push(drop);
-                whiteout.drops.push(drop);
-            }
-        }
-    });
-
     let currentLevelDrawings = [];
+
+    startLevel();
 
     function frameHandler() {
         ctx.clearRect(0,0, canvas.clientWidth, canvas.height);
-        if (player.dead === true) {
-            game.drawDeathText();
-        }
         
         if (player.x < goal.x + 32 && player.x > goal.x &&
             player.y < goal.y + 32 && player.y > goal.y) {
@@ -88,13 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
             drawing.hazardCollisionCheck(currentLevelHazards);
-        })
+        });
         goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.hazardCollisionCheck(currentLevelHazards);
         player.update(leftPressed, rightPressed, upPressed);
         player.draw();
         game.drawLevelMarker();
+        if (player.dead === true) {
+            game.drawDeathText();
+        }
         requestAnimationFrame(frameHandler);
     }
 
@@ -157,23 +143,32 @@ document.addEventListener("DOMContentLoaded", () => {
     function reset() {
         player.dead = false;
         player.x = 96
-        player.y = canvas.height - 192;
+        player.y = canvas.height - 96;
         currentLevelDrawings = [];
         game.inkGauge = 100;
     }
 
     function startLevel() {
         player.x = 96;
-        player.y = canvas.height - 160;
+        player.y = canvas.height - 96;
         currentLevelTerrain = [];
+        currentLevelHazards = [];
         currentLevelDrawings = [];
         game.inkGauge = 100;
         game.currentLevel.terrain.forEach(terrain => {
             currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
         });
         game.currentLevel.hazards.forEach(hazard => {
-            currentLevelHazards.push(new Hazard(hazard.x, hazard.y, hazard.height, hazard.width, ctx));
-        })
+            currentLevelHazards.push(new Hazard(hazard.x, hazard.y, hazard.type, ctx));
+            if (hazard.type === 'whiteout') {
+                const whiteout = currentLevelHazards.slice(-1)[0];
+                for (let i = 0; i < whiteout.numDrops; i++) {
+                    const drop = new Hazard(hazard.x, 800, 'drop', ctx);
+                    currentLevelHazards.push(drop);
+                    whiteout.drops.push(drop);
+                }
+            }
+        });
     }
 
     frameHandler();

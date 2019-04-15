@@ -1,6 +1,38 @@
 var levels = [
 
-    //Level 0
+    //Level 1
+    {
+        terrain: [
+            {
+                x: 128,
+                y: 518,
+                height: 32,
+                width: 128
+            },
+            {
+                x: 740,
+                y: 144,
+                height: 32,
+                width: 128
+            }
+        ],
+        
+        hazards: [
+            {
+                x: 300,
+                y: 518,
+                type: 'spikesup'
+            }
+        ],
+        
+        goal:
+        {
+            x: 740,
+            y: 96
+        }
+    },
+    
+    //Level 2
     {
         terrain: [
             {
@@ -87,7 +119,7 @@ var levels = [
             }
     },
 
-    //Level 1
+    //Level 3
     {
         terrain: [
             {

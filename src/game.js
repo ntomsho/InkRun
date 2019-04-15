@@ -38,7 +38,6 @@ class Game {
         this.ctx.globalAlpha = 1;
         this.ctx.closePath();
         
-        this.ctx.globalCompositeOperation = 'destination-over';
         this.ctx.font = "50px Zapfino";
         this.ctx.fillStyle = "black";
         this.ctx.fillText('Press R to try again', 106, 305);
