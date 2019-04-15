@@ -59,6 +59,15 @@ class Hazard {
                 this.ctx.rect(this.x - 16, this.y - 48, this.width, this.height);
                 this.ctx.fillStyle = "gray";
                 this.ctx.stroke();
+
+                this.ctx.save();
+                this.ctx.translate(this.x, this.y);
+                this.ctx.rotate(270 * Math.PI / 180);
+                this.ctx.font = "12px Arial";
+                this.ctx.fillStyle = "black";
+                this.ctx.fillText(`Titanium`, -24,-5);
+                this.ctx.fillText(`Whiteout`, -25, 10);
+                this.ctx.restore();
                 break;
             case 'drop':
                 this.ctx.beginPath();

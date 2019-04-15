@@ -17,6 +17,7 @@ body {
 .horizontal-container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .canvas-container {
@@ -39,13 +40,17 @@ h1 {
 }
 
 .keyboard-controls-container {
-    background: darkgray;
+    /* border: 1px solid black;
+    border-radius: 3px; */
     width: 130px;
+    height: 400px;
 }
 
 .links-container {
-    background: darkgray;
+    /* border: 1px solid black;
+    border-radius: 3px; */
     width: 130px;
+    height: 400px;
 }
 
 h2 {

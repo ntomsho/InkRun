@@ -12,12 +12,12 @@ var upPressed = false;
 var mousePressed = false;
 var mouseX = 0;
 var mouseY = 0;
-    var prevMouseX = 0;
-    var prevMouseY = 0;
+var prevMouseX = 0;
+var prevMouseY = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("inkRunCanvas");
-    const ctx = canvas.getContext("2d");
+    var canvas = document.getElementById("inkRunCanvas");
+    var ctx = canvas.getContext("2d");
 
     document.body.addEventListener("keydown", keyDownHandler);
     document.body.addEventListener("keyup", keyUpHandler);
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var player = new Player(96, canvas.height - 128, ctx);
     var game = new Game(canvas, ctx, player, Levels);
     var goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y, ctx);
-    
+
     let currentLevelTerrain = [];
     game.currentLevel.terrain.forEach(terrain => {
         currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
@@ -60,21 +60,30 @@ document.addEventListener("DOMContentLoaded", () => {
             game.nextLevel();
             startLevel();
         }
+
         currentLevelTerrain.forEach(terrain => {
             terrain.draw();
         });
+
         currentLevelHazards.forEach(hazard => {
             hazard.update();
             hazard.draw();
         })
+
         if (mousePressed && mouseOffPlayer()) {
             if (game.inkGauge > 0) {
-                currentLevelDrawings.push(new Drawing(mouseX, mouseY, prevMouseX, prevMouseY, ctx))
-                game.inkGauge -= 1;
+                currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx))
+                if (prevMouseX < mouseX + 8 && prevMouseX > mouseX - 8 &&
+                prevMouseY < mouseY + 4 && prevMouseY > mouseY - 4) {
+                    game.inkGauge -= 0.25;
+                } else {
+                    game.inkGauge -= 1.25;
+                }
             } else {
                 game.inkGauge = 0;
             }
         }
+
         game.drawInkGauge();
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
@@ -118,15 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mouseMoveHandler(e) {
         var rect = canvas.getBoundingClientRect();
-        // if (e.clientX > 0 && e.clientX < 900) {
-                prevMouseX = mouseX;
-            mouseX = e.clientX - rect.left;
-        // }
-        
-        // if (e.clientY > 0 && e.clientY < 600) {
-                prevMouseY = mouseY;
-            mouseY = e.clientY - rect.top;
-        // }
+        prevMouseX = mouseX;
+        prevMouseY = mouseY;
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
     }
 
     function mouseDownHandler(e) {
@@ -155,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.x = 96
         player.y = canvas.height - 192;
         currentLevelDrawings = [];
-        game.inkGauge = 150;
+        game.inkGauge = 100;
     }
 
     function startLevel() {
