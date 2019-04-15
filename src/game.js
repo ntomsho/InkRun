@@ -3,11 +3,13 @@ class Game {
         this.canvas = canvas;
         this.ctx = ctx;
         this.player = player;
-        this.inkGauge = 100;
+        this.inkGauge = 75;
         this.gameOver = false;
         this.levels = levels;
+        //Change currentLevelIdx back to 0
         this.currentLevelIdx = 0;
         this.currentLevel = this.levels[this.currentLevelIdx];
+        this.won = false;
     };
 
     nextLevel() {
@@ -41,6 +43,20 @@ class Game {
         this.ctx.font = "50px Zapfino";
         this.ctx.fillStyle = "black";
         this.ctx.fillText('Press R to try again', 106, 305);
+    }
+
+    drawWinText() {
+        this.ctx.beginPath();
+        this.ctx.globalAlpha = 0.2;
+        this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = "gray";
+        this.ctx.fill();
+        this.ctx.globalAlpha = 1;
+        this.ctx.closePath();
+
+        this.ctx.font = "50px Zapfino";
+        this.ctx.fillStyle = "gold";
+        this.ctx.fillText('You Win!', 106, 305);
     }
 
 };

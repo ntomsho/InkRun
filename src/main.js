@@ -40,8 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (player.x < goal.x + 32 && player.x > goal.x &&
             player.y < goal.y + 32 && player.y > goal.y) {
-            game.nextLevel();
-            startLevel();
+            if (game.currentLevelIdx < 4) {
+                game.nextLevel();
+                startLevel();
+            } else {
+                game.won = true;;
+            }
         }
 
         currentLevelTerrain.forEach(terrain => {
@@ -80,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
         game.drawLevelMarker();
         if (player.dead === true) {
             game.drawDeathText();
+        }
+        if (game.won === true) {
+            game.drawWinText()
         }
         requestAnimationFrame(frameHandler);
     }
@@ -145,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.x = 96
         player.y = canvas.height - 96;
         currentLevelDrawings = [];
-        game.inkGauge = 100;
+        game.inkGauge = 75;
     }
 
     function startLevel() {
@@ -154,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelTerrain = [];
         currentLevelHazards = [];
         currentLevelDrawings = [];
-        game.inkGauge = 100;
+        game.inkGauge = 75;
         game.currentLevel.terrain.forEach(terrain => {
             currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
         });
