@@ -3,7 +3,6 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    /* background-size: 1450px; */
 }
 
 .abs-center {
@@ -23,9 +22,6 @@ body {
 .canvas-container {
     height: 540px;
     width: 810px;
-    /* display: block; */
-    /* position: relative; */
-    /* margin: auto; */
 }
 
 .title-header {
@@ -56,9 +52,18 @@ h2 {
     font-family: zapfino;
 }
 
+ul {
+    list-style: none;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
 .links {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .logo-icon {
