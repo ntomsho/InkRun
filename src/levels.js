@@ -5,13 +5,13 @@ var levels = [
         terrain: [
             {
                 x: 128,
-                y: 568,
+                y: 518,
                 height: 32,
                 width: 128
             },
             {
                 x: 204,
-                y: 536,
+                y: 486,
                 height: 64,
                 width: 32
             },
@@ -23,25 +23,25 @@ var levels = [
             },
             {
                 x: 300,
-                y: 592,
+                y: 542,
                 height: 32,
                 width: 32
             },
             {
                 x: 474,
-                y: 300,
+                y: 250,
                 height: 32,
                 width: 32
             },
             {
                 x: 490,
-                y: 236,
+                y: 186,
                 height: 32,
                 width: 32
             },
             {
                 x: 240,
-                y: 408,
+                y: 358,
                 height: 32,
                 width: 32
             }
@@ -50,27 +50,27 @@ var levels = [
         hazards: [
             {
                 x: 300,
-                y: 568,
+                y: 518,
                 type: 'spikesup'
             },
             {
                 x: 450,
-                y: 300,
+                y: 250,
                 type: 'spikesleft'
             },
             {
                 x: 514,
-                y: 236,
+                y: 186,
                 type: 'spikesright'
             },
             {
                 x: 240,
-                y: 432,
+                y: 382,
                 type: 'spikesdown'
             },
             {
                 x: 450,
-                y: 364,
+                y: 314,
                 type: 'eraser'
             },
             {

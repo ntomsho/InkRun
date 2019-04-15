@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("mousedown", mouseDownHandler);
     document.body.addEventListener("mouseup", mouseUpHandler);
     
-    var player = new Player(96, canvas.height - 160, ctx);
+    var player = new Player(96, canvas.height - 128, ctx);
     var game = new Game(canvas, ctx, player, Levels);
     var goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y, ctx);
     
@@ -51,6 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function frameHandler() {
         ctx.clearRect(0,0, canvas.clientWidth, canvas.height);
+        if (player.dead === true) {
+            game.drawDeathText();
+        }
+        
         if (player.x < goal.x + 32 && player.x > goal.x &&
             player.y < goal.y + 32 && player.y > goal.y) {
             game.nextLevel();

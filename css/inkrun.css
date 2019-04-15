@@ -11,18 +11,20 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
 }
 
 .horizontal-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .canvas-container {
     height: 540px;
     width: 810px;
-    display: block;
-    position: relative;
+    /* display: block; */
+    /* position: relative; */
     /* margin: auto; */
 }
 
@@ -38,4 +40,28 @@ h1 {
     font-size: 30px;
     line-height: 30px;
     margin: 0;
+}
+
+.keyboard-controls-container {
+    background: darkgray;
+    width: 130px;
+}
+
+.links-container {
+    background: darkgray;
+    width: 130px;
+}
+
+h2 {
+    font-family: zapfino;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-icon {
+    width: 80px;
+    padding-bottom: 20px;
 }

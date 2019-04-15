@@ -29,6 +29,13 @@ class Game {
         this.ctx.fillText(`Level ${this.currentLevelIdx + 1}`, 96, 96);
     }
 
+    drawDeathText() {
+        this.ctx.globalCompositeOperation = 'destination-over';
+        this.ctx.font = "50px Zapfino";
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText('Press R to try again', 106, 305);
+    }
+
 };
 
 export default Game;
