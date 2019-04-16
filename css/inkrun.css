@@ -1,8 +1,7 @@
 body {
-    background: url('../assets/images/desk-bg2.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    background: url('../assets/images/desk-bg.jpg') no-repeat center fixed,
+    url('../assets/images/second-bg.jpg');
+    background-size: 1600px 900px, cover;
 }
 
 .abs-center {

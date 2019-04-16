@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx))
                 if (prevMouseX < mouseX + 8 && prevMouseX > mouseX - 8 &&
                 prevMouseY < mouseY + 4 && prevMouseY > mouseY - 4) {
-                    game.inkGauge -= 0.25;
+                    game.inkGauge -= 0.2;
                 } else {
-                    game.inkGauge -= 1.25;
+                    game.inkGauge -= 1.5;
                 }
             } else {
                 game.inkGauge = 0;
@@ -79,7 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
         goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.hazardCollisionCheck(currentLevelHazards);
-        player.update(leftPressed, rightPressed, upPressed);
+        if (player.dead === false && game.won === false) {
+            player.update(leftPressed, rightPressed, upPressed);
+        }
         player.draw();
         game.drawLevelMarker();
         if (player.dead === true) {
@@ -153,6 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
         player.y = canvas.height - 96;
         currentLevelDrawings = [];
         game.inkGauge = 75;
+        if (game.won) {
+            game.won = false;
+            game.currentLevelIdx = 0;
+            game.currentLevel = game.levels[game.currentLevelIdx];
+            startLevel();
+        }
     }
 
     function startLevel() {

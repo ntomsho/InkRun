@@ -26,10 +26,6 @@ class Player {
             this.dead = true;
         }
         
-        if (this.dead) {
-            return false
-        }
-        
         if (leftPressed === true && this.blockedLeft === false) {
             this.x -= this.speed;
         }
