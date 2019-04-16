@@ -38,6 +38,7 @@ body {
 .canvas-container {
     height: 540px;
     width: 810px;
+    cursor: url('../assets/images/pen-cursor.png'), pointer;
 }
 
 .title-header {
