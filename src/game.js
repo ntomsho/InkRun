@@ -22,6 +22,12 @@ class Game {
         this.ctx.fillStyle = "black";
         this.ctx.fill();
         this.ctx.closePath();
+
+        this.ctx.font = "20px Times New Roman";
+        this.ctx.fillStyle = "white";
+        this.ctx.fillText('I', 785, 480);
+        this.ctx.fillText('N', 782, 500);
+        this.ctx.fillText('K', 782, 520);
     }
 
     drawLevelMarker() {
