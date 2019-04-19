@@ -10,6 +10,7 @@ var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var mousePressed = false;
+var paused = false;
 var mouseX = 0;
 var mouseY = 0;
 var prevMouseX = 0;
@@ -53,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         currentLevelHazards.forEach(hazard => {
-            hazard.update();
+            if (player.dead === false && paused == false) {
+                hazard.update();
+            }
             hazard.draw();
         })
 
@@ -79,11 +82,14 @@ document.addEventListener("DOMContentLoaded", () => {
         goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.hazardCollisionCheck(currentLevelHazards);
-        if (player.dead === false && game.won === false) {
+        if (player.dead === false && game.won === false && paused === false) {
             player.update(leftPressed, rightPressed, upPressed);
         }
         player.draw();
         game.drawLevelMarker();
+        if (paused === true) {
+            game.drawPause();
+        }
         if (player.dead === true) {
             game.drawDeathText();
         }
@@ -103,6 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (e.key == "w" || e.key == "ArrowUp") {
             upPressed = true;
         }
+        else if (e.key == "p" || e.key == "e") {
+            paused === true ? paused = false : paused = true;
+        }
     }
 
     function keyUpHandler(e) {
@@ -115,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (e.key == "w" || e.key == "ArrowUp") {
             upPressed = false;
         }
-        else if (e.key == "r") {
+        else if (e.key == "r" && paused === false) {
             reset();
         }
     }

@@ -17,6 +17,7 @@ class Player {
         this.blockedTop = false;
         this.jumping = false;
         this.jumpCounter = 0;
+        this.didJump = false;
         this.dead = false;
         this.draw = this.draw.bind(this);
     }
@@ -32,9 +33,14 @@ class Player {
         if (rightPressed === true && this.blockedRight === false) {
             this.x += this.speed;
         }
-        if (upPressed === true && this.onGround !== false) {
+        if (upPressed === true && this.onGround !== false && this.didJump === false) {
             this.onGround = false;
             this.jumping = true;  
+            this.didJump = true;
+        }
+
+        if (upPressed === false) {
+            this.didJump = false;
         }
         
         if (this.onGround === false && this.jumping === false) {
