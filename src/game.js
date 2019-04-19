@@ -23,11 +23,15 @@ class Game {
         this.ctx.fill();
         this.ctx.closePath();
 
+        this.ctx.beginPath();
+        this.ctx.rect(772,532,32, -75);
+        this.ctx.stroke();
+
         this.ctx.font = "20px Times New Roman";
         this.ctx.fillStyle = "white";
-        this.ctx.fillText('I', 785, 480);
-        this.ctx.fillText('N', 782, 500);
-        this.ctx.fillText('K', 782, 520);
+        this.ctx.fillText('I', 784, 480);
+        this.ctx.fillText('N', 781, 500);
+        this.ctx.fillText('K', 781, 520);
     }
 
     drawLevelMarker() {
