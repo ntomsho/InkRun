@@ -110,7 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
             upPressed = true;
         }
         else if (e.key == "p" || e.key == "e") {
-            paused === true ? paused = false : paused = true;
+            if (player.dead === false) {
+                paused === true ? paused = false : paused = true;
+            }
         }
     }
 
