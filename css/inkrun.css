@@ -96,6 +96,8 @@ li {
 }
 
 .logo-icon {
-    width: 80px;
+    display: block;
+    max-width: 80px;
+    max-height: 100px;
     padding-bottom: 20px;
 }

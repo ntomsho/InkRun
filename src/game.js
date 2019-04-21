@@ -40,6 +40,7 @@ class Game {
         this.ctx.fillText(`Level ${this.currentLevelIdx + 1}`, 96, 96);
     }
 
+    //Change alpha modal
     drawPause() {
         this.ctx.beginPath();
         this.ctx.globalAlpha = 0.2;
@@ -54,6 +55,7 @@ class Game {
         this.ctx.fillText('Paused', 300, 305);
     }
 
+    //Change alpha modal
     drawDeathText() {
         this.ctx.beginPath();
         this.ctx.globalAlpha = 0.2;
@@ -68,6 +70,7 @@ class Game {
         this.ctx.fillText('Press R to try again', 106, 305);
     }
 
+    //Change alpha modal
     drawWinText() {
         this.ctx.beginPath();
         this.ctx.globalAlpha = 0.2;
