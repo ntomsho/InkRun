@@ -6,7 +6,7 @@ class Game {
         this.inkGauge = 75;
         this.gameOver = false;
         this.levels = levels;
-        this.currentLevelIdx = 4;
+        this.currentLevelIdx = 0;
         this.currentLevel = this.levels[this.currentLevelIdx];
         this.won = false;
     };
