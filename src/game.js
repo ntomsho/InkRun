@@ -6,7 +6,7 @@ class Game {
         this.inkGauge = 75;
         this.gameOver = false;
         this.levels = levels;
-        this.currentLevelIdx = 0;
+        this.currentLevelIdx = 4;
         this.currentLevel = this.levels[this.currentLevelIdx];
         this.won = false;
     };
@@ -59,7 +59,7 @@ class Game {
     drawDeathText() {
         this.ctx.beginPath();
         this.ctx.globalAlpha = 0.2;
-        this.ctx.rect(this.canvas.width / 4, this.canvas.height / 4, this.canvas.width / 2, this.canvas.height / 2);
+        this.ctx.rect(75, this.canvas.height / 4, this.canvas.width - 150, this.canvas.height / 2);
         this.ctx.fillStyle ="gray";
         this.ctx.fill();
         this.ctx.globalAlpha = 1;
