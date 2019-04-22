@@ -21,8 +21,8 @@ class Hazard {
             this.currentDrop = 0;
             this.drops = []
         } else if (this.type === 'drop') {
-            this.width = 32;
-            this.height = 32;
+            this.width = 28;
+            this.height = 28;
         }
         this.ctx = ctx;
         this.draw = this.draw.bind(this);

@@ -44,7 +44,7 @@ class Game {
     drawPause() {
         this.ctx.beginPath();
         this.ctx.globalAlpha = 0.2;
-        this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.rect(this.canvas.width / 4, this.canvas.height / 4, this.canvas.width / 2, this.canvas.height / 2);
         this.ctx.fillStyle = "gray";
         this.ctx.fill();
         this.ctx.globalAlpha = 1;
@@ -59,7 +59,7 @@ class Game {
     drawDeathText() {
         this.ctx.beginPath();
         this.ctx.globalAlpha = 0.2;
-        this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.rect(this.canvas.width / 4, this.canvas.height / 4, this.canvas.width / 2, this.canvas.height / 2);
         this.ctx.fillStyle ="gray";
         this.ctx.fill();
         this.ctx.globalAlpha = 1;
@@ -72,13 +72,13 @@ class Game {
 
     //Change alpha modal
     drawWinText() {
-        this.ctx.beginPath();
-        this.ctx.globalAlpha = 0.2;
-        this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = "gray";
-        this.ctx.fill();
-        this.ctx.globalAlpha = 1;
-        this.ctx.closePath();
+        // this.ctx.beginPath();
+        // this.ctx.globalAlpha = 0.2;
+        // this.ctx.rect(50, 250, 550, 750);
+        // this.ctx.fillStyle = "gray";
+        // this.ctx.fill();
+        // this.ctx.globalAlpha = 1;
+        // this.ctx.closePath();
 
         this.ctx.font = "50px Zapfino";
         this.ctx.fillStyle = "gold";
