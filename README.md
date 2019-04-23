@@ -1,6 +1,24 @@
 # InkRun
 
+<img src="https://i.imgur.com/fdLeoxp.png">
+
 InkRun is a 2d platformer where the player must guide their character from a starting zone to the goal of each level by using their mouse to draw terrain that interacts with the player character and obstacles. Some obstacles may interact with the player's drawn terrain and the player's drawing ability is limited by an ink gauge that depletes as they draw. Moving the mouse slowly while drawing produces smooth lines that consume less ink.
+
+Obstacles the player must avoid include spikes...
+
+<img src="https://i.imgur.com/O5ZMYXE.png">
+
+Flying erasers...
+
+<img src="https://i.imgur.com/cQBEY3F.png">
+
+And drops of whiteout...
+
+<img src="https://i.imgur.com/CYriOaN.png">
+
+Avoid all the obstacles and get to the goal at the end of the final level to win!
+
+<img src="https://i.imgur.com/E1jZWEr.png">
 
 
 ## Technologies
