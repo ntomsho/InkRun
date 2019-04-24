@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        game.drawInkGauge();
+        game.drawInkGauge(penColor);
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
             drawing.hazardCollisionCheck(currentLevelHazards);
@@ -146,12 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
             mouseX > 0 && mouseX < 800 &&
             mouseY > 25 && mouseY < 535) {
             mousePressed = true;
+            sound.play();
         }
     }
 
     function mouseUpHandler(e) {
         if (e.which === 1) {
             mousePressed = false;
+            sound.pause();
         }
     }
 
@@ -237,7 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 var audio = document.getElementById("audio");
+audio.volume = 0.2;
 var audioStartStop = document.getElementById("audio-button");
+var sound = document.getElementById("sound");
 
 audioStartStop.addEventListener("click", () => {
     audio.paused ? audio.play() : audio.pause();

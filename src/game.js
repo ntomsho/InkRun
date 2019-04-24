@@ -16,10 +16,10 @@ class Game {
         this.currentLevel = this.levels[this.currentLevelIdx];
     }
 
-    drawInkGauge() {
+    drawInkGauge(color) {
         this.ctx.beginPath();
         this.ctx.rect(772, 532, 32, -(this.inkGauge));
-        this.ctx.fillStyle = "black";
+        this.ctx.fillStyle = color;
         this.ctx.fill();
         this.ctx.closePath();
 
