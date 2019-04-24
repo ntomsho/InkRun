@@ -80,6 +80,7 @@ h1 {
     background: rgb(230,229,229);
     background: linear-gradient(17deg, rgba(230,229,229,1) 9%, rgba(246,240,240,0) 95%);
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #audio-button:hover {
@@ -90,6 +91,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .color-choice {

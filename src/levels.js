@@ -412,7 +412,7 @@ var levels = [
             },
             {
                 x: 450,
-                y: 250,
+                y: 251,
                 type: 'spikesleft'
             },
             {
