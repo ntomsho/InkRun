@@ -19,6 +19,8 @@ var prevMouseY = 0;
 document.addEventListener("DOMContentLoaded", () => {
     var canvas = document.getElementById("inkRunCanvas");
     var ctx = canvas.getContext("2d");
+    setColorSelectors();
+    var penColor = "black";
 
     document.body.addEventListener("keydown", keyDownHandler);
     document.body.addEventListener("keyup", keyUpHandler);
@@ -59,10 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             hazard.draw();
         })
-
+        
         if (mousePressed && mouseOffPlayer()) {
             if (game.inkGauge > 0) {
-                currentLevelDrawings.push(new Drawing(mouseX, mouseY, ctx))
+                currentLevelDrawings.push(new Drawing(mouseX, mouseY, penColor, ctx))
                 if (prevMouseX < mouseX + 8 && prevMouseX > mouseX - 8 &&
                 prevMouseY < mouseY + 4 && prevMouseY > mouseY - 4) {
                     game.inkGauge -= 0.2;
@@ -195,6 +197,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
+    }
+
+    function setColorSelectors() {
+        var colorArray = []
+        colorArray.push(document.getElementById("choice-black"));
+        colorArray.push(document.getElementById("choice-cyan"));
+        colorArray.push(document.getElementById("choice-red"));
+        colorArray.push(document.getElementById("choice-yellow"));
+        colorArray.push(document.getElementById("choice-purple"));
+        colorArray.push(document.getElementById("choice-green"));
+
+        colorArray.forEach(ele => {
+            ele.addEventListener("click", () => {
+                colorArray.forEach(subele => {
+                    subele.classList.remove("active-color");
+                })
+                ele.classList.add("active-color");
+                if (ele.id === "choice-black") {
+                    penColor = "black";
+                } else if (ele.id === "choice-cyan") {
+                    penColor = "cyan";
+                } else if (ele.id === "choice-red") {
+                    penColor = "red";
+                } else if (ele.id === "choice-yellow") {
+                    penColor = "yellow";
+                } else if (ele.id === "choice-purple") {
+                    penColor = "purple";
+                } else if (ele.id === "choice-green") {
+                    penColor = "green";
+                }
+            })
+        })
     }
 
     frameHandler();

@@ -1,12 +1,10 @@
 class Drawing {
-    constructor(x, y, ctx) {
+    constructor(x, y, color, ctx) {
         this.x = x;
         this.y = y;
-            // this.prevX = prevX;
-            // this.prevY = prevY;
         this.height = 16;
         this.width = 16;
-        this.color = "black";
+        this.color = color;
         this.ctx = ctx;
         this.draw = this.draw.bind(this);
     }
@@ -26,7 +24,6 @@ class Drawing {
             if (drawingRight >= hazardLeft && drawingLeft <= hazardRight && drawingTop <= hazardBottom && drawingBottom >= hazardTop) {
                 if (hazard.type === 'eraser' || hazard.type === 'drop') {
                     this.y = 800;
-                    // this.prevY = 800;
                 }
             }
         })
