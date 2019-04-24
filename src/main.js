@@ -142,7 +142,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function mouseDownHandler(e) {
-        if (e.which === 1) {
+        if (e.which === 1 &&
+            mouseX > 0 && mouseX < 800 &&
+            mouseY > 25 && mouseY < 535) {
             mousePressed = true;
         }
     }
