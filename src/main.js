@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (e.key == "a" || e.key == "ArrowLeft") {
             leftPressed = false;
         }
-        else if (e.key == "w" || e.key == "ArrowUp") {
+        else if (e.key == "w" || e.key == "ArrowUp" || e.key == ' ') {
             upPressed = false;
         }
         else if (e.key == "r" && paused === false) {
@@ -198,4 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     frameHandler();
+});
+
+var audio = document.getElementById("audio");
+var audioStartStop = document.getElementById("audio-button");
+
+audioStartStop.addEventListener("click", () => {
+    audio.paused ? audio.play() : audio.pause();
 })

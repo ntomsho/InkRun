@@ -19,10 +19,14 @@
     </style>
     <link rel="stylesheet" href="./css/inkrun.css">
     <link rel="icon" href="./assets/images/Pen-icon.png">
-    <audio 
+    <audio id="audio"
         src="assets/audio/JeffSpeed68_-_In_the_clouds.mp3"
-        autoplay>
-    </audio>
+        preload="auto"
+        controls="none"
+        loop="true"
+        style="display: none"
+    ></audio>
+
 </head>
 
 <body>
@@ -44,6 +48,9 @@
                     <li>P / E   pause</li>
                     <li>R   restart level</li>
                     <li>Draw with the mouse. Use smooth, slow lines for best efficiency</li>
+                    <li>
+                        <button id="audio-button">Play/Pause</button>
+                    </li>
                 </ul>
             </div>
             <div class="canvas-container">
@@ -55,6 +62,7 @@
                     <a href="https://github.com/ntomsho" target="_blank"><img class="logo-icon" src="./assets/images/github-icon.svg"></a>
                     <a href="https://www.linkedin.com/in/nicholas-tomsho-15829037" target="_blank"><img class="logo-icon" src="./assets/images/linkedin-icon.png"></a>
                     <a href="https://angel.co/nicholas-tomsho?al_content=view+your+profile&al_source=transaction_feed%2Fnetwork_sidebar" target="_blank"><img class="logo-icon" src="./assets/images/angellist-icon.png"></a>
+                    <a href="https://ntomsho.github.io/" target="_blank"><img class="logo-icon" src="./assets/images/portfolio-icon.png"></a>
                 </div>
             </div>
         </div>
