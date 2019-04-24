@@ -1,4 +1,4 @@
-# InkRun
+# [InkRun](http://ntomsho.github.io/InkRun)
 
 <img src="https://i.imgur.com/fdLeoxp.png">
 
