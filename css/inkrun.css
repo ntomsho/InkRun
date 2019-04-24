@@ -13,6 +13,18 @@ body {
     flex-direction: column;
 }
 
+.attribution-block {
+    position: absolute;
+    right: 1115px;
+    bottom: 490px;
+    display: flex;
+    flex-direction: column;
+    width: 110px;
+    font-family: palatino;
+    transform: rotate(-14deg);
+    font-size: 12px;
+}
+
 .attribution {
     position: absolute;
     transform: rotate(-10deg);
@@ -56,15 +68,20 @@ h1 {
 }
 
 .keyboard-controls-container {
-    /* border: 1px solid black;
-    border-radius: 3px; */
     width: 130px;
     height: 400px;
 }
 
+#audio-button {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px 6px 0 5px;
+    font-family: zapfino;
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
 .links-container {
-    /* border: 1px solid black;
-    border-radius: 3px; */
     width: 130px;
     height: 400px;
     position: relative;
