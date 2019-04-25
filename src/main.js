@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hazard.draw();
         })
         
-        if (mousePressed && mouseOffPlayer()) {
+        if (game.started === true && mousePressed && mouseOffPlayer()) {
             if (game.inkGauge > 0) {
                 currentLevelDrawings.push(new Drawing(mouseX, mouseY, penColor, ctx));
                 game.colors[penColor] += 1;
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         goal.draw();
         player.collisionCheck(currentLevelTerrain, currentLevelDrawings);
         player.hazardCollisionCheck(currentLevelHazards);
-        if (player.dead === false && game.won === false && paused === false) {
+        if (game.started === true && player.dead === false && game.won === false && paused === false) {
             player.update(leftPressed, rightPressed, upPressed);
         }
         player.draw();
@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Control handlers
     function keyDownHandler(e) {
+        console.log(e.key);
         if (e.key == "d" || e.key == "ArrowRight") {
             rightPressed = true;
         }
@@ -119,6 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (player.dead === false && game.won === false) {
                 paused === true ? paused = false : paused = true;
             }
+        }
+        else if (e.key == "Enter") {
+            startModal.style = "display: none";
+            startButton.style = "display: none";
+            game.started = true;
         }
     }
 
@@ -171,6 +177,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //Game admin
+    var startButton = document.getElementById("start-button");
+    var startModal = document.getElementById("gif-modal");
+    startButton.addEventListener("click", () => {
+        startModal.style = "display: none";
+        startButton.style = "display: none";
+        game.started = true;
+    })
+
     function reset() {
         player.dead = false;
         player.x = 96

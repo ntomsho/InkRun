@@ -13,6 +13,29 @@ body {
     flex-direction: column;
 }
 
+.gif-modal {
+    position: absolute;
+    left: 154px;
+    top: 71px;
+}
+
+.start-button {
+    position: absolute;
+    left: 500px;
+    top: 105px;
+}
+
+.start-button button {
+    font-family: zapfino;
+    font-size: 15px;
+    width: 130px;
+    border-radius: 5px;
+    background: linear-gradient(17deg, rgba(230,229,229,1) 9%, rgba(246,240,240,0) 95%);
+    cursor: pointer;
+    padding-top: 10px;
+    padding-right: 8px;
+}
+
 .attribution-block {
     position: absolute;
     right: 1115px;

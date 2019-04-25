@@ -8,6 +8,7 @@ class Game {
         this.levels = levels;
         this.currentLevelIdx = 0;
         this.currentLevel = this.levels[this.currentLevelIdx];
+        this.started = false;
         this.won = false;
         this.colors = {"black": 0, "cyan": 0, "red": 0, "yellow": 0, "purple": 0, "green": 0}
     };
