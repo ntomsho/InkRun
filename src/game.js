@@ -9,6 +9,7 @@ class Game {
         this.currentLevelIdx = 0;
         this.currentLevel = this.levels[this.currentLevelIdx];
         this.won = false;
+        this.colors = {"black": 0, "cyan": 0, "red": 0, "yellow": 0, "purple": 0, "green": 0}
     };
 
     nextLevel() {
@@ -72,17 +73,33 @@ class Game {
 
     //Change alpha modal
     drawWinText() {
-        // this.ctx.beginPath();
-        // this.ctx.globalAlpha = 0.2;
-        // this.ctx.rect(50, 250, 550, 750);
-        // this.ctx.fillStyle = "gray";
-        // this.ctx.fill();
-        // this.ctx.globalAlpha = 1;
-        // this.ctx.closePath();
+        this.ctx.beginPath();
+        this.ctx.globalAlpha = 0.6;
+        this.ctx.rect(0, 175, 900, 235);
+        this.ctx.fillStyle = "gray";
+        this.ctx.fill();
+        this.ctx.globalAlpha = 1;
+        this.ctx.closePath();
+
+        let favoriteColor = null;
+        let colorCount = 0;
+        Object.keys(this.colors).forEach(color => {
+            if (this.colors[color] > colorCount) {
+                favoriteColor = color;
+                colorCount = this.colors[color];
+            }
+        })
 
         this.ctx.font = "50px Zapfino";
         this.ctx.fillStyle = "gold";
-        this.ctx.fillText('You Win!', 106, 305);
+        this.ctx.fillText('You Win!', 106, 315);
+
+        this.ctx.font = "20px Zapfino";
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText('Your favorite color was:', 500, 250);
+        this.ctx.font = "50px Zapfino";
+        this.ctx.fillStyle = favoriteColor;
+        this.ctx.fillText(favoriteColor, 500, 350);
     }
 
 };

@@ -6,6 +6,7 @@ import Levels from './levels.js';
 import Goal from './goal.js';
 import Hazard from './hazard.js';
 
+//Iniitalize variables & event listeners
 var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startLevel();
 
     function frameHandler() {
+        //per frame logic
         ctx.clearRect(0,0, canvas.clientWidth, canvas.height);
         
         if (player.x < goal.x + 32 && player.x > goal.x &&
@@ -64,7 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (mousePressed && mouseOffPlayer()) {
             if (game.inkGauge > 0) {
-                currentLevelDrawings.push(new Drawing(mouseX, mouseY, penColor, ctx))
+                currentLevelDrawings.push(new Drawing(mouseX, mouseY, penColor, ctx));
+                game.colors[penColor] += 1;
                 if (prevMouseX < mouseX + 8 && prevMouseX > mouseX - 8 &&
                 prevMouseY < mouseY + 4 && prevMouseY > mouseY - 4) {
                     game.inkGauge -= 0.2;
@@ -101,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(frameHandler);
     }
 
+    //Control handlers
     function keyDownHandler(e) {
         if (e.key == "d" || e.key == "ArrowRight") {
             rightPressed = true;
@@ -112,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             upPressed = true;
         }
         else if (e.key == "p" || e.key == "e") {
-            if (player.dead === false) {
+            if (player.dead === false && game.won === false) {
                 paused === true ? paused = false : paused = true;
             }
         }
@@ -166,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    //Game admin
     function reset() {
         player.dead = false;
         player.x = 96
@@ -203,6 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //Color
     function setColorSelectors() {
         var colorArray = []
         colorArray.push(document.getElementById("choice-black"));
@@ -238,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
     frameHandler();
 });
 
+//Audio
 var audio = document.getElementById("audio");
 audio.volume = 0.2;
 var audioStartStop = document.getElementById("audio-button");
