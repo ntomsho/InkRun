@@ -16,6 +16,7 @@ var mouseX = 0;
 var mouseY = 0;
 var prevMouseX = 0;
 var prevMouseY = 0;
+var difficultyMod = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
     var canvas = document.getElementById("inkRunCanvas");
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("mouseup", mouseUpHandler);
     
     var player = new Player(96, canvas.height - 96, ctx);
-    var game = new Game(canvas, ctx, player, Levels);
+    var game = new Game(canvas, ctx, difficultyMod, player, Levels);
     var goal = new Goal(game.currentLevel.goal.x, game.currentLevel.goal.y, ctx);
 
     let currentLevelTerrain = [];
@@ -79,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        game.drawInkGauge(penColor);
+        game.drawInkGauge(penColor, difficultyMod);
         currentLevelDrawings.forEach(drawing => {
             drawing.draw();
             drawing.hazardCollisionCheck(currentLevelHazards);
@@ -106,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Control handlers
     function keyDownHandler(e) {
-        console.log(e.key);
         if (e.key == "d" || e.key == "ArrowRight") {
             rightPressed = true;
         }
@@ -120,11 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (player.dead === false && game.won === false) {
                 paused === true ? paused = false : paused = true;
             }
-        }
-        else if (e.key == "Enter") {
-            startModal.style = "display: none";
-            startButton.style = "display: none";
-            game.started = true;
         }
     }
 
@@ -177,12 +172,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //Game admin
-    var startButton = document.getElementById("start-button");
+    var startButtons = Array.from(document.getElementsByClassName("start-button"));
     var startModal = document.getElementById("gif-modal");
-    startButton.addEventListener("click", () => {
-        startModal.style = "display: none";
-        startButton.style = "display: none";
-        game.started = true;
+    startButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            switch(button.id){
+                case "easy":
+                    difficultyMod = 2;
+                    break
+                case "medium":
+                    difficultyMod = 1;
+                    break
+                case "hard":
+                    difficultyMod = 0.33;
+                    break
+            }
+            startModal.style = "display: none";
+            startButtons.forEach(button => {
+                button.style = "display: none";
+            })
+            game.inkGauge = 75 * difficultyMod;
+            game.started = true;
+        })
     })
 
     function reset() {
@@ -190,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         player.x = 96
         player.y = canvas.height - 96;
         currentLevelDrawings = [];
-        game.inkGauge = 75;
+        game.inkGauge = 75 * difficultyMod;
         if (game.won) {
             game.won = false;
             game.currentLevelIdx = 0;
@@ -205,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentLevelTerrain = [];
         currentLevelHazards = [];
         currentLevelDrawings = [];
-        game.inkGauge = 75;
+        game.inkGauge = 75 * difficultyMod;
         game.currentLevel.terrain.forEach(terrain => {
             currentLevelTerrain.push(new Terrain(terrain.x, terrain.y, terrain.height, terrain.width, ctx));
         });

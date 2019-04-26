@@ -1,9 +1,9 @@
 class Game {
-    constructor(canvas, ctx, player, levels) {
+    constructor(canvas, ctx, difficultyMod, player, levels) {
         this.canvas = canvas;
         this.ctx = ctx;
         this.player = player;
-        this.inkGauge = 75;
+        this.inkGauge = 75 * difficultyMod;
         this.gameOver = false;
         this.levels = levels;
         this.currentLevelIdx = 0;
@@ -18,9 +18,9 @@ class Game {
         this.currentLevel = this.levels[this.currentLevelIdx];
     }
 
-    drawInkGauge(color) {
+    drawInkGauge(color, difficultyMod) {
         this.ctx.beginPath();
-        this.ctx.rect(772, 532, 32, -(this.inkGauge));
+        this.ctx.rect(772, 532, 32, -(this.inkGauge / difficultyMod));
         this.ctx.fillStyle = color;
         this.ctx.fill();
         this.ctx.closePath();

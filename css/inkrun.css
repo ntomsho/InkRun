@@ -21,8 +21,21 @@ body {
 
 .start-button {
     position: absolute;
+}
+
+#easy {
+    left: 250px;
+    top: 305px;
+}
+
+#medium {
     left: 500px;
     top: 105px;
+}
+
+#hard {
+    left: 750px;
+    top: 305px;
 }
 
 .start-button button {

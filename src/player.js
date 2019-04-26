@@ -54,7 +54,7 @@ class Player {
         } else if (this.jumping === true) {
             this.vspeed = this.jumpSpeed;
             this.jumpCounter += 1;
-            if (this.jumpCounter >= 10 || this.blockedTop === true) {
+            if (this.jumpCounter >= 15 || this.blockedTop === true) {
                 this.jumping = false;
             }
         }
