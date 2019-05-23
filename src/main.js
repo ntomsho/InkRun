@@ -198,11 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function reset() {
         player.dead = false;
-        // player.x = 96
-        // player.y = canvas.height - 96;
-        player.x = 420;
-        player.y = 300;
-
+        player.x = 96
+        player.y = canvas.height - 96;
         currentLevelDrawings = [];
         game.inkGauge = 75 * difficultyMod;
         if (game.won) {
@@ -214,11 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function startLevel() {
-        // player.x = 96;
-        // player.y = canvas.height - 96;
-        player.x = 420;
-        player.y = 300;
-
+        player.x = 96;
+        player.y = canvas.height - 96;
         currentLevelTerrain = [];
         currentLevelHazards = [];
         currentLevelDrawings = [];
