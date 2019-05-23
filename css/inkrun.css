@@ -39,14 +39,13 @@ body {
 }
 
 .start-button button {
-    font-family: zapfino;
-    font-size: 15px;
+    font-family: 'Tangerine', cursive;
+    font-size: 30px;
     width: 130px;
     border-radius: 5px;
     background: linear-gradient(17deg, rgba(230,229,229,1) 9%, rgba(246,240,240,0) 95%);
     cursor: pointer;
-    padding-top: 10px;
-    padding-right: 8px;
+    padding: 15px 0;
 }
 
 .attribution-block {
@@ -72,9 +71,10 @@ body {
 }
 
 .second-part {
-    font-family: zapfino;
-    font-size: 14px;
-    font-weight: bold;
+    font-family: 'Tangerine', cursive;
+    font-size: 30px;
+    font-weight: normal;
+    margin-top: 7px;
 }
 
 .horizontal-container {
@@ -97,8 +97,8 @@ body {
 }
 
 h1 {
-    font-family: zapfino;
-    font-size: 30px;
+    font-family: 'Tangerine', cursive;
+    font-size: 75px;
     line-height: 30px;
     margin: 0;
 }
@@ -109,10 +109,11 @@ h1 {
 }
 
 #audio-button {
+    font-size: 22px;
     border: 1px solid darkgray;
     border-radius: 3px;
-    padding: 5px 12px 0 5px;
-    font-family: zapfino;
+    padding: 10px 17px 10px 10px;
+    font-family: 'Tangerine', cursive;
     background: rgb(230,229,229);
     background: linear-gradient(17deg, rgba(230,229,229,1) 9%, rgba(246,240,240,0) 95%);
     cursor: pointer;
@@ -174,11 +175,14 @@ h1 {
 }   
 
 .links-container h2 {
-    margin-left: 23px;
+    margin-left: 28px;
 }
 
 h2 {
-    font-family: zapfino;
+    font-size: 45px;
+    margin: 20px 0;
+    font-weight: normal;
+    font-family: 'Tangerine', cursive;
     text-decoration: underline;
 }
 

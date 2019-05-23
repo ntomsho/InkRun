@@ -37,7 +37,7 @@ class Game {
     }
 
     drawLevelMarker() {
-        this.ctx.font = "30px Zapfino";
+        this.ctx.font = "70px Tangerine, cursive";
         this.ctx.fillStyle = "black";
         this.ctx.fillText(`Level ${this.currentLevelIdx + 1}`, 96, 96);
     }
@@ -52,7 +52,7 @@ class Game {
         this.ctx.globalAlpha = 1;
         this.ctx.closePath();
 
-        this.ctx.font = "50px Zapfino";
+        this.ctx.font = "100px Tangerine, cursive";
         this.ctx.fillStyle = "black";
         this.ctx.fillText('Paused', 300, 305);
     }
@@ -67,9 +67,9 @@ class Game {
         this.ctx.globalAlpha = 1;
         this.ctx.closePath();
         
-        this.ctx.font = "50px Zapfino";
+        this.ctx.font = "100px Tangerine, cursive";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText('Press R to try again', 106, 305);
+        this.ctx.fillText('Press R to try again', 130, 305);
     }
 
     //Change alpha modal
@@ -91,16 +91,16 @@ class Game {
             }
         })
 
-        this.ctx.font = "50px Zapfino";
+        this.ctx.font = "100px Tangerine, cursive";
         this.ctx.fillStyle = "gold";
         this.ctx.fillText('You Win!', 106, 315);
 
-        this.ctx.font = "20px Zapfino";
+        this.ctx.font = "50px Tangerine, cursive";
         this.ctx.fillStyle = "black";
         this.ctx.fillText('Your favorite color was:', 500, 250);
-        this.ctx.font = "50px Zapfino";
+        this.ctx.font = "70px Tangerine, cursive";
         this.ctx.fillStyle = favoriteColor;
-        this.ctx.fillText(favoriteColor, 500, 350);
+        this.ctx.fillText(favoriteColor, 580, 330);
     }
 
 };
