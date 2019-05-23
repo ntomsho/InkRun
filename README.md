@@ -26,7 +26,8 @@ Avoid all the obstacles and get to the goal at the end of the final level to win
 InkRun runs in HTML5 Canvas, utilizing the built-in requestAnimationFrame() function to create an animated UI within the HTML page. CSS is used to style the page around the Canvas, including the background which is incorporated into the canvas to create the illusion of drawing on a piece of paper. Game logic is written in JavaScript and Webpack was used to bundle the JS files.
 
 Below is an example of the game's collision logic, using simple math to calculate the bounding box of the player as well as each piece of terrain and drawing on the game board and checking for overlaps which are then resolved by the collisionHandler() function.
-```collisionCheck(currentLevelTerrain, currentLevelDrawings) {
+```javascript
+collisionCheck(currentLevelTerrain, currentLevelDrawings) {
         const playerTop = this.y - this.height / 2;
         const playerBottom = this.y + this.height / 2;
         const playerLeft = this.x - this.width / 2;
@@ -55,7 +56,7 @@ Below is an example of the game's collision logic, using simple math to calculat
 ```
 
 Levels are constructed through a series of nested arrays and objects that the engine iterates through when the level begins, creating instances of the Terrain, Hazard, and Goal classes, and adding them to an array to be rendered onto the canvas.
-```
+```javascript
 var levels = [
 
     //Level 1
