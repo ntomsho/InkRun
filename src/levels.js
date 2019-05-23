@@ -20,6 +20,12 @@ var levels = [
                 y: 542,
                 height: 32,
                 width: 32
+            },
+            {
+                x: 420,
+                y: 340,
+                height: 32,
+                width: 128
             }
         ],
         
