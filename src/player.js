@@ -4,6 +4,7 @@ class Player {
         this.y = y;
         this.height = 32;
         this.width = 32;
+        this.xAcceleration = 0;
         this.speed = 3;
         this.gravity = 5;
         this.jumpSpeed = -6;
@@ -27,12 +28,24 @@ class Player {
             this.dead = true;
         }
         
-        if (leftPressed === true && this.blockedLeft === false) {
-            this.x -= this.speed;
+        if (this.xAcceleration) {
+            this.x += this.speed * this.xAcceleration;
         }
-        if (rightPressed === true && this.blockedRight === false) {
-            this.x += this.speed;
+
+        if (leftPressed && !this.blockedLeft) {
+            this.xAcceleration >= -1 ? this.xAcceleration -= 0.1 : this.xAcceleration = -1;
+        } else if (rightPressed && !this.blockedRight) {
+            this.xAcceleration <= 1 ? this.xAcceleration += 0.1 : this.xAcceleration = 1;
+        } else if ((this.xAcceleration > 0 && this.blockedRight) || this.xAcceleration < 0 && this.blockedLeft) {
+            this.xAcceleration = 0;
+        } else {
+            if (Math.abs(this.xAcceleration) < 0.1 || this.dead) {
+                this.xAcceleration = 0;
+            } else {
+                this.xAcceleration < 0 ? this.xAcceleration += 0.1 : this.xAcceleration -= 0.1;
+            }
         }
+
         if (upPressed === true && this.onGround !== false && this.didJump === false) {
             this.onGround = false;
             this.jumping = true;  
